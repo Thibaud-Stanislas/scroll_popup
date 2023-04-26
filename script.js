@@ -1,37 +1,32 @@
-let lastScroll = 10;
-let afterScroll = 300;
-let beforeScroll = 1400;
+let playOnce = true;
 
 window.addEventListener("scroll", () => {
-  if (window.scrollY < lastScroll) {
+  if (window.scrollY > 50) {
+    navbar.style.height = "45px";
+  } else {
     navbar.style.height = "90px";
-  } else {
-    navbar.style.height = "50px";
   }
-});
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY < afterScroll) {
-    imgImprovise.style.opacity = "0";
-    imgImprovise.style.translate = "-200px";
-  } else {
-    imgImprovise.style.opacity = "1";
-    imgImprovise.style.translate = "200px";
+  let scrollValue =
+    (window.scrollY + window.innerHeight) / document.body.offsetHeight;
+
+  if (scrollValue > 0.45) {
+    imgImprovise.style.opacity = 1;
+    imgImprovise.style.transform = "none";
   }
-});
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY < beforeScroll) {
-    popup.style.opacity = "0";
-    popup.style.translate = "400px";
-  } else {
-    popup.style.opacity = "1";
-    popup.style.translate = "-400px";
+  if (scrollValue > 0.85 && playOnce) {
+    popup.style.opacity = 1;
+    popup.style.transform = "none";
+    playOnce = false;
+    playOnce = false;
   }
 });
 
 closeBtn.addEventListener("click", () => {
-  popup.style.translate = "400px";
+  console.log("test");
+  popup.style.opacity = 0;
+  popup.style.transform = "translateX(500px)";
 });
 
 // Créer un événement au scroll
